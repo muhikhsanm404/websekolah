@@ -1,5 +1,5 @@
 # Web Sekolah PHP & MySQL 
-Website
+Website SMKN 1 Nglegok
 
 # Fitur :
 
