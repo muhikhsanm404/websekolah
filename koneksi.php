@@ -1,6 +1,6 @@
 <?php 
 session_start();
 
-$koneksi = mysqli_connect('localhost', 'root', 'siber', 'sekolahku') or die('gagal konek');
+$koneksi = mysqli_connect('localhost', 'root', '', 'sekolahku') or die('gagal konek');
 
 ?>
