@@ -9,10 +9,54 @@ $active = 'artikel';
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Data Artikel - SMK Negeri 1 Nglegok</title>
 	<link rel="stylesheet" href="../../resources/datatables/datatables.min.css">
 	<link rel="stylesheet" href="../../resources/css/bootstrap.min.css">
+	
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+
+      }
+	  img{
+		width: 100%;
+		height : 100%;
+	  }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+
+      
+    </style>
+
 </head>
 <body>
 	<?php require_once '../navbar.php'; ?>
@@ -30,6 +74,7 @@ $active = 'artikel';
 							</div>
 						</div>
 					</div>
+
 					<div class="card-body">
 						<?php if(isset($_SESSION['sukses'])) : ?>
 							<div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -48,32 +93,35 @@ $active = 'artikel';
 							</div>
 						<?php unset($_SESSION['gagal']) ?>
 						<?php endif; ?>
-						<table id="table_id" class="dataTable table table-bordered">
-						    <thead>
-						        <tr>
-						            <th>No</th>
-						            <th width="250px">Gambar Artikel</th>
-						            <th>Judul Artikel</th>
-						            <th>Kategori Artikel</th>
-						            <th width="100px">Aksi</th>
-						        </tr>
-						    </thead>
-						    <tbody>
-						        <?php while($row = mysqli_fetch_assoc($query)) : ?>
-									<tr>
-										<td><?= $no++ ?></td>
-										<td><img src="../../images/artikel/<?= $row['foto'] ?>" alt="<?= $row['judul'] ?>" width="100%" class="img-thumbnail"></td>
-										<td><a href="detail.php?id=<?= $row['id'] ?>"><?= $row['judul'] ?></a></td>
-										<td><?= isset($row['nama_kategori']) ? $row['nama_kategori'] : '-' ?></td>
-										<td>
+					</div>
+
+					<div class="album py-5 bg-light">
+							<div class="container">
+
+							<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+							<?php while($row = mysqli_fetch_assoc($query)) : ?>	
+								<div class="col">
+									<div class="card shadow-sm">
+									<img src="../../images/artikel/<?= $row['foto'] ?>" alt="<?= $row['judul'] ?>" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2" viewBox="0 0 24 24"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"  class="bd-placeholder-img card-img-top">
+									
+									<div class="card-body">
+									<p class="card-text">This is a wider cardead-in to additional content. This content is a little bit longer.</p>
+									<div class="d-flex justify-content-between align-items-center">
+										<div class="btn-group">
 											<a href="ubah.php?id=<?= $row['id'] ?>" class="btn btn-success btn-sm">Ubah</a>
 											<a href="hapus.php?id=<?= $row['id'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('apakah anda yakin?')">Hapus</a>
-										</td>
-									</tr>
-								<?php endwhile; ?>
-						    </tbody>
-						</table>
-					</div>
+										</div>
+										<small class="text-muted"><?= isset($row['nama_kategori']) ? $row['nama_kategori'] : '-' ?></small>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+
+							<?php endwhile; ?>
+							</div>
+							</div>
+ 						 </div>
 				</div>
 			</div>
 		</div>
